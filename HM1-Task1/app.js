@@ -15,7 +15,7 @@ function convertNumberToBase() {
     }
 
     const result = convertNumber(+num, +base);
-    return result
+    return result;
 }
 
 console.log(convertNumberToBase());
