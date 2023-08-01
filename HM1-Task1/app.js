@@ -8,19 +8,24 @@ function isNumValid(number) {
 
 function convertNumberToBase() {
     const num = prompt('Введите число');
-    const base = prompt('Введите систему счисления');
 
-    const numberToConvert = Number(num);
-    const baseOfNum = Number(base);
-
-    if (!isNumValid(numberToConvert) || !isNumValid(baseOfNum)) {
+    if (!isNumValid(num)) {
 
         console.log('Некорректный ввод!');
         return;
 
     }
 
-    const result = convertNumber(numberToConvert, baseOfNum);
+    const base = prompt('Введите систему счисления');
+
+    if (!isNumValid(base)) {
+
+        console.log('Некорректный ввод!');
+        return;
+
+    }
+
+    const result = convertNumber(Number(num), Number(base));
     console.log(result);
 }
 
