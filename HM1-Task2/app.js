@@ -1,11 +1,3 @@
-function checkIfNumberValid(num){
-    if (!isNumValid(num)) {
-
-        return "Некорректный ввод!";
-
-    }
-}
-
 function isNumValid(number) {
     return !isNaN(parseInt(number));
 }
@@ -20,13 +12,21 @@ function calculatePrivate(num1, num2) {
 
 function sumAndAverage() {
     const firstNum = prompt('Введите первое число');
-    checkIfNumberValid(firstNum);
+    if (!isNumValid(firstNum)) {
+
+        return "Некорректный ввод!";
+
+    }
     
     const secondNum = prompt('Введите второе число');
-    checkIfNumberValid(secondNum);
+    if (!isNumValid(secondNum)) {
+
+        return "Некорректный ввод!";
+
+    }
     
     const sum = calculateSum(Number(firstNum), Number(secondNum));
-    const average = calculatePrivate(firstNum, secondNum);
+    const average = calculatePrivate(Number(firstNum), Number(secondNum));
 
     return `Ответ: ${sum}, ${average}`;
 }
