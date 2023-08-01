@@ -10,7 +10,7 @@ function calculatePrivate(num1, num2) {
     return num1 / num2;
 }
 
-function sumAndAverage() {
+function sumAndPrivate() {
     const firstNum = prompt('Введите первое число');
 
     if (!isNumValid(firstNum)) {
@@ -29,4 +29,4 @@ function sumAndAverage() {
     return `Ответ: ${sum}, ${average}.`;
 }
 
-console.log(sumAndAverage());
+console.log(sumAndPrivate());
