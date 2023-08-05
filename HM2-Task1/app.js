@@ -20,8 +20,8 @@ function selectFromInterval(array, firstInterval, secondInterval) {
 
     let startInterval, endInterval;
 
-    const isNumInvalid = !array.every((num) => typeof num === 'number') || typeof firstInterval !== 'number' 
-    || typeof secondInterval !== 'number';
+    const isNumInvalid = !array.every((num) => typeof num === 'number') || typeof firstInterval !== 'number'
+        || typeof secondInterval !== 'number';
 
     if (isNumInvalid) {
         throw new Error('Ошибка!');
@@ -55,4 +55,4 @@ const myIterable = {
         }
     }
 };
-   
+
