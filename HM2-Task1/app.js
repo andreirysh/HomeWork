@@ -1,56 +1,66 @@
-function makeObjectDeepCopy(obj) {
-    if (typeof obj !== 'object' || obj === null) {
-        return obj;
-    }
+// function makeObjectDeepCopy(obj) {
+//     if (typeof obj !== 'object' || obj === null) {
+//         return obj;
+//     }
 
-    const copyOfObj = Array.isArray(obj) ? [] : {};
+//     const copyOfObj = Array.isArray(obj) ? [] : {};
 
-    for (const key in obj) {
+//     for (let key in obj) {
 
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            copyOfObj[key] = makeObjectDeepCopy(obj[key]);
-        }
+//         if (Object.prototype.hasOwnProperty.call(obj, key)) {
+//             copyOfObj[key] = makeObjectDeepCopy(obj[key]);
+//         }
 
-    }
-    return copyOfObj;
-}
+//     }
+//     return copyOfObj;
+// }
 
-function selectFromInterval(array, firstInterval, secondInterval) {
 
-    let startInterval, endInterval;
+// function selectFromInterval(array, firstInterval, secondInterval) {
 
-    const isNumInvalid = !array.every((num) => typeof num === 'number') || typeof firstInterval !== 'number' || typeof secondInterval !== 'number';
+//     let startInterval, endInterval;
 
-    if (isNumInvalid) {
-        throw new Error('Ошибка!');
-    }
+//     const isNumInvalid = !array.every((num) => typeof num === 'number') || typeof firstInterval !== 'number' || typeof secondInterval !== 'number';
 
-    if (firstInterval < secondInterval) {
-        startInterval = firstInterval;
-        endInterval = secondInterval;
-    }
+//     if (isNumInvalid) {
+//         throw new Error('Ошибка!');
+//     }
 
-    else {
-        startInterval = secondInterval;
-        endInterval = firstInterval;
-    }
+//     if (firstInterval < secondInterval) {
+//         startInterval = firstInterval;
+//         endInterval = secondInterval;
+//     }
 
-    return array.filter((num) => num >= startInterval && num <= endInterval);
-}
+//     else {
+//         startInterval = secondInterval;
+//         endInterval = firstInterval;
+//     }
+
+//     return array.filter((num) => num >= startInterval && num <= endInterval);
+// }
 
 const myIterable = {
     from: 1,
     to: 4,
-    [Symbol.iterator]: function* () {
+    [Symbol.iterator]() {
+        let from = this.from;
+        let to = this.to;
         const isNumInvalid = typeof this.from !== 'number' || typeof this.to !== 'number' || this.to < this.from
 
         if (isNumInvalid) {
             throw new Error('Ошибка!')
         }
 
-        for (let i = this.from; i <= this.to; i++) {
-            yield i
-        }
+        return {
+            next() {
+                if (from <= to) {
+                    return { value: from++, done: false };
+                } else {
+                    return { done: true };
+                }
+            }
+        };
     }
 };
+
 
