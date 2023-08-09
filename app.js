@@ -8,6 +8,7 @@ Array.prototype.myFilter = function (callbackFn, context) {
             filteredArr.push(this[i]);
         }
     }
+
     return filteredArr;
 };
 
@@ -21,7 +22,6 @@ function createDebounceFunction(callbackFn, delayInMs) {
             callbackFn();
         }, delayInMs);
     }
-}
-
+};
 
 
