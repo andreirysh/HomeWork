@@ -23,5 +23,3 @@ function createDebounceFunction(callbackFn, delayInMs) {
         }, delayInMs);
     }
 };
-
-
