@@ -6,14 +6,39 @@ let divisionByZero = false;
 const displayField = document.querySelector('.display');
 const clearButton = document.querySelector('.btn-clear');
 
-clearButton.addEventListener('click', function() {
+document.addEventListener('keydown', function (event) {
+    const key = event.key;
+
+    if (/[0-9]/.test(key)) {
+        addNumber(parseInt(key));
+    } else if (key === '.') {
+        addDecimal();
+    } else if (key === '+') {
+        operate('+');
+    } else if (key === '-') {
+        operate('-');
+    } else if (key === '*') {
+        operate('*');
+    } else if (key === '/') {
+        operate('/');
+    } else if (key === 'Enter') {
+        calculate();
+    } else if (key === 'Backspace') {
+        backspace();
+    }
+
+    if (key === 'C' || key === 'c') {
+        clearDisplay();
+    }
+});
+
+clearButton.addEventListener('click', function () {
     currentNumber = '0';
     operator = '';
     numInMemory = 0;
     divisionByZero = false;
     updateDisplay();
 });
-
 
 function updateDisplay() {
     if (divisionByZero) {
