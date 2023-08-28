@@ -24,7 +24,7 @@ class Car {
 
     set brand(carBrand){
         if(typeof carBrand !== 'string' || carBrand.length < 1 || carBrand.length > 50){
-            throw new Error('Ошибка в бренде!');
+            throw new Error('Некорректный бренд машины!');
         }
 
         this.#brand = carBrand;
@@ -36,7 +36,7 @@ class Car {
 
     set model(carModel){
         if(typeof carModel !== 'string' || carModel.length < 1 || carModel.length > 50){
-            throw new Error('Ошибка в модели!');
+            throw new Error('Некорректная модель машины!');
         }
 
         this.#model = carModel;
@@ -50,7 +50,7 @@ class Car {
         const currentYear = new Date().getFullYear();
 
         if (typeof carManufacturingYear !== 'number' || carManufacturingYear < 1900 || carManufacturingYear > currentYear) {
-            throw new Error('Ошибка в году!');
+            throw new Error('Некорректный год сборки машины!');
         }
         
         this.#yearOfManufacturing = carManufacturingYear;
@@ -62,7 +62,7 @@ class Car {
 
     set maxSpeed(carSpeed) {
         if (typeof carSpeed !== 'number' || carSpeed < 100 || carSpeed > 300) {
-            throw new Error('Ошибка в скорости!');
+            throw new Error('Некорректная скорость машины!');
         }
 
         this.#maxSpeed = carSpeed;
@@ -74,7 +74,7 @@ class Car {
 
     set maxFuelVolume(carFuelVolume) {
         if (typeof carFuelVolume !== 'number' || carFuelVolume < 5 || carFuelVolume > 20) {
-            throw new Error('Ошибка в баке!');
+            throw new Error('Некорректное кол-во топлива в баке!');
         }
 
         this.#maxFuelVolume = carFuelVolume;
@@ -86,7 +86,7 @@ class Car {
 
     set fuelConsumption(carFuelConsumption) {
         if (typeof carFuelConsumption !== 'number' || carFuelConsumption <= 0) {
-            throw new Error('Ошибка в топливе!');
+            throw new Error('Некорректное кол-во расхода топлива машины!');
         }
         
         this.#fuelConsumption = carFuelConsumption;
