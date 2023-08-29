@@ -1,127 +1,126 @@
-let currentNumber = '0';
-let operator = '';
-let numInMemory = 0;
-let divisionByZero = false;
+class Calculator {
+    constructor(displayField) {
+        this.currentNumber = '0';
+        this.operator = '';
+        this.numInMemory = 0;
+        this.divisionByZero = false;
+        this.displayField = displayField;
+    }
+
+    updateDisplay() {
+        if (this.divisionByZero) {
+            this.displayField.value = 'На ноль делить нельзя!';
+        } else {
+            this.displayField.value = parseFloat(this.currentNumber).toString();
+        }
+    }
+
+    addNumber(num) {
+        if (this.currentNumber === '0' || this.currentNumber === '-0' || this.divisionByZero) {
+            this.currentNumber = num.toString();
+            this.divisionByZero = false;
+        } else {
+            this.currentNumber += num.toString();
+        }
+
+        this.updateDisplay();
+    }
+
+    addDecimal() {
+        if (!this.currentNumber.includes('.')) {
+            this.currentNumber += '.';
+            this.updateDisplay();
+        }
+    }
+
+    changeSign() {
+        this.currentNumber = (parseFloat(this.currentNumber) * -1).toString();
+        this.updateDisplay();
+    }
+
+    operate(op) {
+        this.calculate();
+        this.operator = op;
+        this.numInMemory = parseFloat(this.currentNumber);
+        this.currentNumber = '0';
+    }
+
+    clearDisplay() {
+        this.currentNumber = '0';
+        this.operator = '';
+        this.numInMemory = 0;
+        this.divisionByZero = false;
+        this.updateDisplay();
+    }
+
+    backspace() {
+        this.currentNumber = this.currentNumber.slice(0, -1);
+
+        if (this.currentNumber === '') {
+            this.currentNumber = '0';
+        }
+
+        this.updateDisplay();
+    }
+
+    calculate() {
+        if (this.operator && this.numInMemory !== 0) {
+            switch (this.operator) {
+                case '*':
+                    this.currentNumber = (this.numInMemory * parseFloat(this.currentNumber)).toString().slice(0, 10);
+                    break;
+                case '/':
+                    if (parseFloat(this.currentNumber) === 0) {
+                        this.divisionByZero = true;
+                    } else {
+                        this.currentNumber = (this.numInMemory / parseFloat(this.currentNumber)).toString().slice(0, 10);
+                    }
+                    break;
+                case '+':
+                    this.currentNumber = (this.numInMemory + parseFloat(this.currentNumber)).toString().slice(0, 10);
+                    break;
+                case '-':
+                    this.currentNumber = (this.numInMemory - parseFloat(this.currentNumber)).toString().slice(0, 10);
+                    break;
+            }
+
+            this.operator = '';
+            this.numInMemory = 0;
+            this.updateDisplay();
+        }
+    }
+}
 
 const displayField = document.querySelector('.display');
-const clearButton = document.querySelector('.btn-clear');
+const calculator = new Calculator(displayField);
 
 document.addEventListener('keydown', function (event) {
     const key = event.key;
 
     if (/[0-9]/.test(key)) {
-        addNumber(parseInt(key));
+        calculator.addNumber(parseInt(key));
     } else if (key === '.') {
-        addDecimal();
+        calculator.addDecimal();
     } else if (key === '+') {
-        operate('+');
+        calculator.operate('+');
     } else if (key === '-') {
-        operate('-');
+        calculator.operate('-');
     } else if (key === '*') {
-        operate('*');
+        calculator.operate('*');
     } else if (key === '/') {
-        operate('/');
+        calculator.operate('/');
     } else if (key === 'Enter') {
-        calculate();
+        calculator.calculate();
     } else if (key === 'Backspace') {
-        backspace();
+        calculator.backspace();
     }
 
     if (key === 'C' || key === 'c') {
-        clearDisplay();
+        calculator.clearDisplay();
     }
 });
 
+const clearButton = document.querySelector('.btn-clear');
 clearButton.addEventListener('click', function () {
-    currentNumber = '0';
-    operator = '';
-    numInMemory = 0;
-    divisionByZero = false;
-    updateDisplay();
+    calculator.clearDisplay();
 });
-
-function updateDisplay() {
-    if (divisionByZero) {
-        displayField.value = 'На ноль делить нельзя!';
-    } else {
-        displayField.value = parseFloat(currentNumber).toString();
-    }
-}
-
-function addNumber(num) {
-    if (currentNumber === '0' || currentNumber === '-0' || divisionByZero) {
-        currentNumber = num.toString();
-        divisionByZero = false;
-    } else {
-        currentNumber += num.toString();
-    }
-
-    updateDisplay();
-}
-
-function addDecimal() {
-    if (!currentNumber.includes('.')) {
-        currentNumber += '.';
-        updateDisplay();
-    }
-}
-
-function changeSign() {
-    currentNumber = (parseFloat(currentNumber) * -1).toString();
-    updateDisplay();
-}
-
-function operate(op) {
-    calculate();
-    operator = op;
-    numInMemory = parseFloat(currentNumber);
-    currentNumber = '0';
-}
-
-function clearDisplay() {
-    currentNumber = '0';
-    operator = '';
-    numInMemory = 0;
-    updateDisplay();
-}
-
-function backspace() {
-    currentNumber = currentNumber.slice(0, -1);
-
-    if (currentNumber === '') {
-        currentNumber = '0';
-    }
-
-    updateDisplay();
-}
-
-function calculate() {
-    if (operator && numInMemory !== 0) {
-        switch (operator) {
-            case '*':
-                currentNumber = (numInMemory * parseFloat(currentNumber)).toString().slice(0, 10);
-                break;
-            case '/':
-
-                if (parseFloat(currentNumber) === 0) {
-                    divisionByZero = true;
-                } else {
-                    currentNumber = (numInMemory / parseFloat(currentNumber)).toString().slice(0, 10);
-                }
-
-                break;
-            case '+':
-                currentNumber = (numInMemory + parseFloat(currentNumber)).toString().slice(0, 10);
-                break;
-            case '-':
-                currentNumber = (numInMemory - parseFloat(currentNumber)).toString().slice(0, 10);
-                break;
-        }
-
-        operator = '';
-        numInMemory = 0;
-        updateDisplay();
-    }
-}
-
-updateDisplay();

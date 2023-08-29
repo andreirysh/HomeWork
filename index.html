@@ -12,25 +12,25 @@
     <div class="calculator">
         <input class="display" type="text" value="0" readonly>
         <div class="buttons">
-            <button class="btn" onclick="addNumber(7)">7</button>
-            <button class="btn" onclick="addNumber(8)">8</button>
-            <button class="btn" onclick="addNumber(9)">9</button>
-            <button class="btn" onclick="changeSign()">+/-</button>
-            <button class="btn" onclick="backspace()">→</button>
-            <button class="btn" onclick="addNumber(4)">4</button>
-            <button class="btn" onclick="addNumber(5)">5</button>
-            <button class="btn" onclick="addNumber(6)">6</button>
-            <button class="btn" onclick="operate('*')">&#215;</button>
-            <button class="btn" onclick="operate('/')">&#247;</button>
-            <button class="btn" onclick="addNumber(1)">1</button>
-            <button class="btn" onclick="addNumber(2)">2</button>
-            <button class="btn" onclick="addNumber(3)">3</button>
-            <button class="btn" onclick="operate('+')">+</button>
-            <button class="btn" onclick="operate('-')">-</button>
-            <button class="btn btn-clear" onclick="clearDisplay()">C</button>
-            <button class="btn" onclick="addNumber(0)">0</button>
-            <button class="btn" onclick="addDecimal()">.</button>
-            <button class="btn btn-equal" onclick="calculate()">=</button>
+            <button class="btn" onclick="calculator.addNumber(7)">7</button>
+            <button class="btn" onclick="calculator.addNumber(8)">8</button>
+            <button class="btn" onclick="calculator.addNumber(9)">9</button>
+            <button class="btn" onclick="calculator.changeSign()">+/-</button>
+            <button class="btn" onclick="calculator.backspace()">→</button>
+            <button class="btn" onclick="calculator.addNumber(4)">4</button>
+            <button class="btn" onclick="calculator.addNumber(5)">5</button>
+            <button class="btn" onclick="calculator.addNumber(6)">6</button>
+            <button class="btn" onclick="calculator.operate('*')">&#215;</button>
+            <button class="btn" onclick="calculator.operate('/')">&#247;</button>
+            <button class="btn" onclick="calculator.addNumber(1)">1</button>
+            <button class="btn" onclick="calculator.addNumber(2)">2</button>
+            <button class="btn" onclick="calculator.addNumber(3)">3</button>
+            <button class="btn" onclick="calculator.operate('+')">+</button>
+            <button class="btn" onclick="calculator.operate('-')">-</button>
+            <button class="btn btn-clear" onclick="calculator.clearDisplay()">C</button>
+            <button class="btn" onclick="calculator.addNumber(0)">0</button>
+            <button class="btn" onclick="calculator.addDecimal()">.</button>
+            <button class="btn btn-equal" onclick="calculator.calculate()">=</button>
         </div>
     </div>
     <script src="calculator.js"></script>
